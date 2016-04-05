@@ -1,6 +1,6 @@
 ---
 title: "Problem set 4"
-author: "Your name here"
+author: "Mandy"
 date: "`r Sys.Date()`"
 ---
 
@@ -25,6 +25,8 @@ data/hg19.chr1.fa.gz
 
 First build a bowtie2 index with `bowtie2-build` and use `bowtie2` and `samtools` to align the reads to the index.
 
+**Note: the indeces were not uploaded to github because they were too large, even when compressed**
+
 **The output of the alignment step is a sorted BAM file.**
 
 ### Create bedGraph
@@ -46,7 +48,7 @@ $ git push origin gh-pages
 your trackline should look something like this (all on one line):
 
 ```
-track type=bedGraph bigDataUrl="http://<username>.github.io/<repo name>/path/to/bw color=255,0,0 visiblity=full name='chip data' description='chip description'
+track type=bigWig bigDataUrl="http://mandylr.github.io/problem-set-4/results/factorx.bw" color=255,0,0 visibility=full name='chip data' description='chip description'
 ```
 
 ### Peak calling
@@ -56,7 +58,6 @@ Call peaks from the bedGraph data using MACS2.
 ```bash
 $ macs2 callpeak -t <BAM file>
 ```
-
 
 ### Generate motifs from the peak calls
 
@@ -68,6 +69,7 @@ $ macs2 callpeak -t <BAM file>
 # if you get an error about "max size" add -maxsize 1000000
 $ meme <FASTA file> -nmotifs 1 -maxw 20 -minw 8 -dna 
 ```
+*Note: This code took a __very__ long time to run!*
 
 1. Extract the motif from the `meme.txt` output and use TOMTOM to identify
 the motif match. You can use the `meme-get-motif` to extract the first motif from the file:
@@ -77,3 +79,15 @@ meme-get-motif -id 1 < meme.txt
 ```
 
 Copy the numeric matrix into the the search box on the tomtom site and report which motif it matches.
+
+*Note: meme.txt is empty for my file, but I uploaded the meme.html document to TOMTOM and got the results seen below*
+
+###Results: 
+
+####Binding Motif
+
+![Binding Motif](results/meme/logo1.png)
+
+####Binding motif matched **CTCF**
+
+![TOMTOM Alignment](results/meme/TOMTOM_CTCF.png)

@@ -2,14 +2,14 @@
 
 #Make indices
 
-#gunzip data/hg19.chr1.fa.gz
+gunzip data/hg19.chr1.fa.gz
 
-#bowtie2-build data/hg19.chr1.fa index/hg19.chr1
+bowtie2-build data/hg19.chr1.fa index/hg19.chr1
 
 #Align reads with bowtie2 and then make a sorted bam file
 
-#bowtie2 -x index/hg19.chr1 -U data/factorx.chr1.fq.gz \
- #   | samtools sort -o results/factorx.sort.bam
+bowtie2 -x index/hg19.chr1 -U data/factorx.chr1.fq.gz \
+    | samtools sort -o results/factorx.sort.bam
 
 #Making a bed graph file
 
@@ -50,4 +50,5 @@ meme results/factorx.summits.windows.fa -nmotifs 1 -maxw 20 -minw 8 -dna \
 #NOTE: This text file is empty, so this code does nothing...
 meme-get-motif -id 1 < results/meme/meme.txt
 
-#To upload to github, you I needed to compress files
+#To upload to github, you I needed to compress files. I also did not
+#upload the index files because they were too large.
