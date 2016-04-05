@@ -1,6 +1,6 @@
 ---
 title: "Problem set 4"
-author: "Your name here"
+author: "Mandy"
 date: "`r Sys.Date()`"
 ---
 
@@ -46,7 +46,7 @@ $ git push origin gh-pages
 your trackline should look something like this (all on one line):
 
 ```
-track type=bedGraph bigDataUrl="http://<username>.github.io/<repo name>/path/to/bw color=255,0,0 visiblity=full name='chip data' description='chip description'
+track type=bigWig bigDataUrl="http:/mandylr.github.io/problem-set-4/results/factorx.bw"" color=255,0,0 visiblity=full name='chip data' description='chip description'
 ```
 
 ### Peak calling
@@ -57,13 +57,13 @@ Call peaks from the bedGraph data using MACS2.
 $ macs2 callpeak -t <BAM file>
 ```
 
-
 ### Generate motifs from the peak calls
 
 1. Use these peak calls to collect FASTA sequences with `bedtools getfasta`.
 
 1. Derive motifs from the FASTA sequences with `meme`.
 
+*Note: This takes a __very__ long time to run!*
 ```bash
 # if you get an error about "max size" add -maxsize 1000000
 $ meme <FASTA file> -nmotifs 1 -maxw 20 -minw 8 -dna 
@@ -72,8 +72,20 @@ $ meme <FASTA file> -nmotifs 1 -maxw 20 -minw 8 -dna
 1. Extract the motif from the `meme.txt` output and use TOMTOM to identify
 the motif match. You can use the `meme-get-motif` to extract the first motif from the file:
 
+*Note: The meme.txt file was empty, so I uploaded the meme.html document to TOMTOM to get the motif*
+
 ```bash
 meme-get-motif -id 1 < meme.txt
 ```
 
 Copy the numeric matrix into the the search box on the tomtom site and report which motif it matches.
+
+##Results
+
+####Motif from meme
+
+![Motif from Meme](results/meme/logo1.png)
+
+####TOMTOM results matched __CTCF__ motif
+
+![TOMTOM results](results/meme/TOMTOM_CTCF.png)
