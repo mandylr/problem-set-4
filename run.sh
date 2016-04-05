@@ -50,5 +50,16 @@ meme results/factorx.summits.windows.fa -nmotifs 1 -maxw 20 -minw 8 -dna \
 #NOTE: This text file is empty, so this code does nothing...
 meme-get-motif -id 1 < results/meme/meme.txt
 
-#To upload to github, you I needed to compress files. Also did not upload
-#indeces beacause they were too large, even when compressed.
+shuf results/factorx.summits.windows.bed | head -n 1000 \
+    > results/peaks.rand.1000.bed
+
+bedtools getfasta -fi data/hg19.chr1.fa -bed results/peaks.rand.1000.bed \
+    -fo results/peaks.rand.1000.fa
+
+meme results/peaks.rand.1000.fa -nmotifs 1 -maxw 20 -minw 8 -dnr \
+    -maxsize 10000000 -o results/meme_shuf
+
+
+
+
+
