@@ -46,8 +46,12 @@ $ git push origin gh-pages
 your trackline should look something like this (all on one line):
 
 ```
-track type=bigWig bigDataUrl="http:/mandylr.github.io/problem-set-4/results/factorx.bw" color=255,0,0 visiblity=full name='chip data' description='chip description'
+track type=bigWig bigDataUrl="http://mandylr.github.io/problem-set-4/results/factorx.bw" color=255,0,0 visiblity=full name='chip data' description='chip description'
 ```
+
+### USCS Broswer Track
+
+![Screen shot from USCS](results/UCSCTrack.png)
 
 ### Peak calling
 
