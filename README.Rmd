@@ -89,3 +89,20 @@ Copy the numeric matrix into the the search box on the tomtom site and report wh
 ####TOMTOM results matched __CTCF__ motif
 
 ![TOMTOM results](results/meme/TOMTOM_CTCF.png)
+
+###Ran meme with a subset of 1000 peaks. 
+
+`bash shuf results/factorx.summits.windows.bed | head -n 1000 > results/peaks.rand.1000.bed`
+
+`bash bedtools getfasta -fi data/hg19.chr1.fa -bed results/peaks.rand.1000.bed -fo results/peaks.rand.1000.fa`
+
+`bash meme results/peaks.rand.1000.fa -nmotifs 1 -maxw 20 -minw 8 -dna -maxsize 10000000 -o results/meme_shuff`
+
+![Meme Motif](results/meme_shuf/logo1.png)
+
+####The subset of 1000 TOMTOM results match __CTCF__ motif
+
+I uploaded the `meme_shuf/meme.html` file to TOMTOM motif finder and it resulted in a match to __CTCF__. 
+
+![TOMTOM Match](results/meme_shuf/TOMTOMmofifCTCF.png)
+

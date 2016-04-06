@@ -4,11 +4,11 @@
 
 gunzip data/hg19.chr1.fa.gz
 
-bowtie2-build data/hg19.chr1.fa index/hg19.chr1
+bowtie2-build data/hg19.chr1.fa ../index/hg19.chr1
 
 #Align reads with bowtie2 and then make a sorted bam file
 
-bowtie2 -x index/hg19.chr1 -U data/factorx.chr1.fq.gz \
+bowtie2 -x ../index/hg19.chr1 -U data/factorx.chr1.fq.gz \
     | samtools sort -o results/factorx.sort.bam
 
 #Making a bed graph file
@@ -56,10 +56,6 @@ shuf results/factorx.summits.windows.bed | head -n 1000 \
 bedtools getfasta -fi data/hg19.chr1.fa -bed results/peaks.rand.1000.bed \
     -fo results/peaks.rand.1000.fa
 
-meme results/peaks.rand.1000.fa -nmotifs 1 -maxw 20 -minw 8 -dnr \
-    -maxsize 10000000 -o results/meme_shuf
-
-
-
-
+meme results/peaks.rand.1000.fa -nmotifs 1 -maxw 20 -minw 8 -dna \
+    -maxsize 10000000 -o results/meme_shuff
 
